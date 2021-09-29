@@ -6,11 +6,9 @@ app.initializers.add('justoverclock/igdb-api', () => {
     extend(DiscussionHero.prototype, 'oncreate', function () {
         const discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
         const isLoggedIn = app.session.user;
-        let controller = new AbortController();
-        let signal = controller.signal;
 
         if (isLoggedIn) {
-            const GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8', {signal})
+            const GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8')
                 .then((response) => response.json())
                 .then((data) => {
                     this.gameDet = data;
@@ -23,7 +21,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
         if (typeof this.gameDet === 'undefined') return;
 
         const score = 'width:' + this.gameDet.metacritic + '%';
-        
+
         if (this.gameDet.description_raw === undefined) {
             return ;
         } else {

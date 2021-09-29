@@ -125,13 +125,9 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
 
     var discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
     var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
-    var controller = new AbortController();
-    var signal = controller.signal;
 
     if (isLoggedIn) {
-      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8', {
-        signal: signal
-      }).then(function (response) {
+      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8').then(function (response) {
         return response.json();
       }).then(function (data) {
         _this.gameDet = data;
