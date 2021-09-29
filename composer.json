@@ -1,0 +1,40 @@
+{
+    "name": "justoverclock/igdb-api",
+    "description": "Igdb Api for Videogames",
+    "keywords": [
+        "flarum",
+        "igdb",
+        "game database"
+    ],
+    "type": "flarum-extension",
+    "license": "0BSD",
+    "require": {
+        "flarum/core": "^1.0.0"
+    },
+    "require-dev": {
+        "flarum/testing": "^1.0.0"
+    },
+    "authors": [
+        {
+            "name": "Marco Colia",
+            "email": "info@flarum.it",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Justoverclock\\IgdbApi\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "IGDB Api",
+            "category": "",
+            "icon": {
+                "name": "fas fa-gamepad",
+                "backgroundColor": "purple",
+                "color": "white"
+            }
+        }
+    }
+}
