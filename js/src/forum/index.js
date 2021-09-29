@@ -17,6 +17,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
     extend(DiscussionHero.prototype, 'items', function (items) {
         if (typeof this.gameDet === 'undefined') return;
         const score = 'width:' + this.gameDet.metacritic + '%';
+
         console.log(score);
 
         items.add(
