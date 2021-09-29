@@ -124,51 +124,60 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     var _this = this;
 
     var discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
-    var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8').then(function (response) {
-      return response.json();
-    }).then(function (data) {
-      _this.gameDet = data;
-      console.log(data);
-      m.redraw();
-    });
+    var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
+
+    if (isLoggedIn) {
+      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8').then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this.gameDet = data;
+        console.log(data);
+        m.redraw();
+      });
+    }
   });
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_DiscussionHero__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items) {
     if (typeof this.gameDet === 'undefined') return;
     var score = 'width:' + this.gameDet.metacritic + '%';
-    console.log(score);
-    items.add('gameDetails', m("div", {
-      className: "myclass"
-    }, m("div", {
-      "class": "gameWrapper"
-    }, m("div", {
-      "class": "container-fluid"
-    }, m("div", {
-      "class": "row"
-    }, m("div", {
-      "class": "col-12 mt-3"
-    }, m("div", {
-      "class": "card"
-    }, m("div", {
-      "class": "card-horizontal"
-    }, m("div", {
-      "class": "img-square-wrapper"
-    }, m("img", {
-      "class": "gamePoster",
-      src: this.gameDet.background_image
-    }), m("div", {
-      "class": "metaScore"
-    }, "MetaCritic Score: ", this.gameDet.metacritic), m("div", {
-      "class": "meter green nostripes"
-    }, m("span", {
-      id: "progresscore",
-      style: score
-    }))), m("div", {
-      "class": "card-body"
-    }, m("h1", {
-      "class": "card-title"
-    }, this.gameDet.name), m("p", {
-      "class": "card-text"
-    }, this.gameDet.description_raw))))))))));
+    var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
+
+    if (this.gameDet.description_raw === undefined && !isLoggedIn) {
+      return;
+    } else {
+      items.add('gameDetails', m("div", {
+        className: "myclass"
+      }, m("div", {
+        "class": "gameWrapper"
+      }, m("div", {
+        "class": "container-fluid"
+      }, m("div", {
+        "class": "row"
+      }, m("div", {
+        "class": "col-12 mt-3"
+      }, m("div", {
+        "class": "card"
+      }, m("div", {
+        "class": "card-horizontal"
+      }, m("div", {
+        "class": "img-square-wrapper"
+      }, m("img", {
+        "class": "gamePoster",
+        src: this.gameDet.background_image
+      }), m("div", {
+        "class": "metaScore"
+      }, "MetaCritic Score: ", this.gameDet.metacritic), m("div", {
+        "class": "meter green nostripes"
+      }, m("span", {
+        id: "progresscore",
+        style: score
+      }))), m("div", {
+        "class": "card-body"
+      }, m("h1", {
+        "class": "card-title"
+      }, this.gameDet.name), m("p", {
+        "class": "card-text"
+      }, this.gameDet.description_raw))))))))));
+    }
   });
 });
 
