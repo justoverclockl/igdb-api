@@ -125,9 +125,13 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
 
     var discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
     var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
+    var controller = new AbortController();
+    var signal = controller.signal;
 
     if (isLoggedIn) {
-      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8').then(function (response) {
+      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8', {
+        signal: signal
+      }).then(function (response) {
         return response.json();
       }).then(function (data) {
         _this.gameDet = data;
@@ -139,7 +143,6 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_DiscussionHero__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items) {
     if (typeof this.gameDet === 'undefined') return;
     var score = 'width:' + this.gameDet.metacritic + '%';
-    console.log(this.gameDet.developers[0].name);
 
     if (this.gameDet.description_raw === undefined) {
       return;
@@ -174,11 +177,17 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         "class": "card-body"
       }, m("h1", {
         "class": "card-title"
-      }, this.gameDet.name), m("h3", {
+      }, this.gameDet.name), m("h4", {
         "class": "gamesubtitle"
-      }, "Publisher: ", this.gameDet.developers[0].name), m("p", {
+      }, "Publisher: ", this.gameDet.developers[0].name, " - Genres: ", this.gameDet.genres[0].name, ",", ' ', this.gameDet.genres[1].name, ' '), m("p", {
         "class": "card-text"
-      }, this.gameDet.description_raw))))))))));
+      }, this.gameDet.description_raw), m("p", {
+        "class": "linktometac"
+      }, m("i", {
+        "class": "fas fa-link metacr"
+      }), m("a", {
+        href: this.gameDet.metacritic_url
+      }, "See on MetaCritic")))))))))));
     }
   });
 });

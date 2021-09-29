@@ -4,12 +4,13 @@ import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 
 app.initializers.add('justoverclock/igdb-api', () => {
     extend(DiscussionHero.prototype, 'oncreate', function () {
-
         const discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
         const isLoggedIn = app.session.user;
+        let controller = new AbortController();
+        let signal = controller.signal;
 
         if (isLoggedIn) {
-            const GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8')
+            const GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8', {signal})
                 .then((response) => response.json())
                 .then((data) => {
                     this.gameDet = data;
@@ -22,9 +23,9 @@ app.initializers.add('justoverclock/igdb-api', () => {
         if (typeof this.gameDet === 'undefined') return;
 
         const score = 'width:' + this.gameDet.metacritic + '%';
-        console.log(this.gameDet.developers[0].name)
+        
         if (this.gameDet.description_raw === undefined) {
-            return;
+            return ;
         } else {
             items.add(
                 'gameDetails',
@@ -39,13 +40,20 @@ app.initializers.add('justoverclock/igdb-api', () => {
                                                 <img class="gamePoster" src={this.gameDet.background_image} />
                                                 <div class="metaScore">MetaCritic Score: {this.gameDet.metacritic}</div>
                                                 <div class="meter green nostripes">
-                                                    <span id="progresscore" style={score}/>
+                                                    <span id="progresscore" style={score} />
                                                 </div>
                                             </div>
                                             <div class="card-body">
                                                 <h1 class="card-title">{this.gameDet.name}</h1>
-                                              <h3 class="gamesubtitle">Publisher: {this.gameDet.developers[0].name}</h3>
+                                                <h4 class="gamesubtitle">
+                                                    Publisher: {this.gameDet.developers[0].name} - Genres: {this.gameDet.genres[0].name},{' '}
+                                                    {this.gameDet.genres[1].name}{' '}
+                                                </h4>
                                                 <p class="card-text">{this.gameDet.description_raw}</p>
+                                                <p class="linktometac">
+                                                    <i class="fas fa-link metacr"></i>
+                                                    <a href={this.gameDet.metacritic_url}>See on MetaCritic</a>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
