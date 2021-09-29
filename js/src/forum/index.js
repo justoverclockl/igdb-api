@@ -22,9 +22,8 @@ app.initializers.add('justoverclock/igdb-api', () => {
         if (typeof this.gameDet === 'undefined') return;
 
         const score = 'width:' + this.gameDet.metacritic + '%';
-        const isLoggedIn = app.session.user;
 
-        if (this.gameDet.description_raw === undefined && !isLoggedIn) {
+        if (this.gameDet.description_raw === undefined) {
             return;
         } else {
             items.add(

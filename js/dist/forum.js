@@ -139,9 +139,8 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_DiscussionHero__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items) {
     if (typeof this.gameDet === 'undefined') return;
     var score = 'width:' + this.gameDet.metacritic + '%';
-    var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
 
-    if (this.gameDet.description_raw === undefined && !isLoggedIn) {
+    if (this.gameDet.description_raw === undefined) {
       return;
     } else {
       items.add('gameDetails', m("div", {
