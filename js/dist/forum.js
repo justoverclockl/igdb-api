@@ -139,6 +139,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_DiscussionHero__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items) {
     if (typeof this.gameDet === 'undefined') return;
     var score = 'width:' + this.gameDet.metacritic + '%';
+    console.log(this.gameDet.developers[0].name);
 
     if (this.gameDet.description_raw === undefined) {
       return;
@@ -173,7 +174,9 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         "class": "card-body"
       }, m("h1", {
         "class": "card-title"
-      }, this.gameDet.name), m("p", {
+      }, this.gameDet.name), m("h3", {
+        "class": "gamesubtitle"
+      }, "Publisher: ", this.gameDet.developers[0].name), m("p", {
         "class": "card-text"
       }, this.gameDet.description_raw))))))))));
     }
