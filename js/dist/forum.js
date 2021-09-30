@@ -123,6 +123,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_DiscussionHero__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'oncreate', function () {
     var _this = this;
 
+    var RawgKey = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.forum.attribute('justoverclock-igdb-api.RawgApiKey');
     var discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
     var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user; // gestiamo gli errori nella risposta
 
@@ -136,7 +137,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
 
 
     if (isLoggedIn) {
-      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8').then(handleErrors).then(function (response) {
+      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=' + RawgKey).then(handleErrors).then(function (response) {
         return response.json();
       }).then(function (data) {
         _this.gameDet = data;

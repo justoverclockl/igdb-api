@@ -4,6 +4,7 @@ import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 
 app.initializers.add('justoverclock/igdb-api', () => {
     extend(DiscussionHero.prototype, 'oncreate', function () {
+        const RawgKey = app.forum.attribute('justoverclock-igdb-api.RawgApiKey');
         const discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
         const isLoggedIn = app.session.user;
 
@@ -16,7 +17,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
         }
         // per evitare troppe richieste all'api, effettuiamo fetch solo per chi è registrato
         if (isLoggedIn) {
-            const GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8')
+            const GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=' + RawgKey)
                 .then(handleErrors)
                 .then((response) => response.json())
                 .then((data) => {
