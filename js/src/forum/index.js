@@ -47,7 +47,6 @@ app.initializers.add('justoverclock/igdb-api', () => {
           items.remove('title')
             items.add(
                 'gameDetails',
-                <div className="myclass">
                     <div class="gameWrapper">
                         <div class="container-fluid">
                             <div class="row">
@@ -86,7 +85,6 @@ app.initializers.add('justoverclock/igdb-api', () => {
                             </div>
                         </div>
                     </div>
-                </div>
             );
         }
     });

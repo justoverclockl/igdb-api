@@ -17,7 +17,7 @@
   flex: 1 1 auto;
 }
 .gameWrapper {
-  max-width: 800px;
+  /*max-width: 800px;*/ // removed to try wider display
   margin: 0 auto;
 }
 h4.gamesubtitle {
@@ -27,7 +27,8 @@ h4.gamesubtitle {
 }
 .card-body {
   background-color:rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .metaScore {
   width: 150px;
@@ -62,9 +63,9 @@ i.fas.fa-globe-europe.offweb {
 }
 .img-square-wrapper {
   background-color: rgba(0,0,0,0.2);
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   padding: 4px;
-  margin-right: 5px;
   background-size: cover;
   background-position: center center;
 }

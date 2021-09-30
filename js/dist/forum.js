@@ -166,8 +166,6 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     } else {
       items.remove('title');
       items.add('gameDetails', m("div", {
-        className: "myclass"
-      }, m("div", {
         "class": "gameWrapper"
       }, m("div", {
         "class": "container-fluid"
@@ -214,7 +212,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         target: "_blank",
         rel: "nofollow",
         title: this.gameDet.website
-      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.offwebsite'))))))))))));
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.offwebsite')))))))))));
     }
   });
 });
