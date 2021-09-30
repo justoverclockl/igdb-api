@@ -141,7 +141,8 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         return response.json();
       }).then(function (data) {
         _this.gameDet = data;
-        console.log(data);
+        console.log(data); // --------------------------------------------------------------------------------------------------------da rimuovere!!!
+
         m.redraw();
       })["catch"](function (error) {
         return console.log('This Game title does not exist =>', discGameTitle);
@@ -152,7 +153,13 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     if (typeof this.gameDet === 'undefined') return; // css per la barra punteggi e l'immagine di background
 
     var score = 'width:' + this.gameDet.metacritic + '%';
-    var bgGame = 'background-image:url(' + this.gameDet.background_image + ');'; // non mostriamo l'html se non c'è nulla da mostrare
+    var bgGame = 'background-image:url(' + this.gameDet.background_image + ');';
+
+    if (this.gameDet.metacritic === null) {
+      this.gameDet.metacritic = 0;
+      score = 'width:0%';
+    } // non mostriamo l'html se non c'è nulla da mostrare
+
 
     if (this.gameDet.description_raw === undefined) {
       return;

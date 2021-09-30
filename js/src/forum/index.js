@@ -22,7 +22,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
                 .then((response) => response.json())
                 .then((data) => {
                     this.gameDet = data;
-                    console.log(data);
+                    console.log(data);         // --------------------------------------------------------------------------------------------------------da rimuovere!!!
                     m.redraw();
                 })
                 .catch((error) => console.log('This Game title does not exist =>', discGameTitle));
@@ -32,8 +32,13 @@ app.initializers.add('justoverclock/igdb-api', () => {
         if (typeof this.gameDet === 'undefined') return;
 
         // css per la barra punteggi e l'immagine di background
-        const score = 'width:' + this.gameDet.metacritic + '%';
-        const bgGame = 'background-image:url(' + this.gameDet.background_image + ');';
+        let score = 'width:' + this.gameDet.metacritic + '%';
+        let bgGame = 'background-image:url(' + this.gameDet.background_image + ');';
+
+        if (this.gameDet.metacritic === null){
+          this.gameDet.metacritic = 0;
+          score = 'width:0%';
+        }
 
         // non mostriamo l'html se non c'è nulla da mostrare
         if (this.gameDet.description_raw === undefined) {
