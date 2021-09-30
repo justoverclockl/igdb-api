@@ -1,7 +1,8 @@
 justoverclock-igdb-api:
-  # For more details on the format
-  # Checkout https://docs.flarum.org/extend/i18n.html#appendix-a-standard-key-format
   admin:
     my_cool_key: My Cool Key
-
   forum:
+    seeOnMetaCritic: See on Metacritic
+    genres: Genres
+    publisher: Publisher
+    metacriticScore: MetaCritic Score

@@ -124,21 +124,34 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     var _this = this;
 
     var discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
-    var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user;
+    var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user; // gestiamo gli errori nella risposta
+
+    function handleErrors(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+
+      return response;
+    } // per evitare troppe richieste all'api, effettuiamo fetch solo per chi è registrato
+
 
     if (isLoggedIn) {
-      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8').then(function (response) {
+      var GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=75a9ffdcf8624e1896ead6e467b985e8').then(handleErrors).then(function (response) {
         return response.json();
       }).then(function (data) {
         _this.gameDet = data;
         console.log(data);
         m.redraw();
+      })["catch"](function (error) {
+        return console.log('This Game title does not exist =>', discGameTitle);
       });
     }
   });
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_DiscussionHero__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'items', function (items) {
-    if (typeof this.gameDet === 'undefined') return;
+    if (typeof this.gameDet === 'undefined') return; // css per la barra punteggi e l'immagine di background
+
     var score = 'width:' + this.gameDet.metacritic + '%';
+    var bgGame = 'background-image:url(' + this.gameDet.background_image + ');'; // non mostriamo l'html se non c'è nulla da mostrare
 
     if (this.gameDet.description_raw === undefined) {
       return;
@@ -158,13 +171,11 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
       }, m("div", {
         "class": "card-horizontal"
       }, m("div", {
-        "class": "img-square-wrapper"
-      }, m("img", {
-        "class": "gamePoster",
-        src: this.gameDet.background_image
-      }), m("div", {
+        "class": "img-square-wrapper",
+        style: bgGame
+      }, m("div", {
         "class": "metaScore"
-      }, "MetaCritic Score: ", this.gameDet.metacritic), m("div", {
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.metacriticScore'), ": ", this.gameDet.metacritic), m("div", {
         "class": "meter green nostripes"
       }, m("span", {
         id: "progresscore",
@@ -175,15 +186,17 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         "class": "card-title"
       }, this.gameDet.name), m("h4", {
         "class": "gamesubtitle"
-      }, "Publisher: ", this.gameDet.developers[0].name, " - Genres: ", this.gameDet.genres[0].name, ",", ' ', this.gameDet.genres[1].name, ' '), m("p", {
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ":", ' ', this.gameDet.developers[0].name, " -", flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ":", ' ', this.gameDet.genres[0].name, ", ", this.gameDet.genres[1].name, ' '), m("p", {
         "class": "card-text"
       }, this.gameDet.description_raw), m("p", {
         "class": "linktometac"
       }, m("i", {
         "class": "fas fa-link metacr"
       }), m("a", {
-        href: this.gameDet.metacritic_url
-      }, "See on MetaCritic")))))))))));
+        href: this.gameDet.metacritic_url,
+        target: "_blank",
+        rel: "nofollow"
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.seeOnMetaCritic'))))))))))));
     }
   });
 });
