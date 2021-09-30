@@ -4,6 +4,9 @@
 
 A [Flarum](http://flarum.org) extension. Igdb Api for Videogames
 
+![1JK2KZZ2ot](https://user-images.githubusercontent.com/79002016/135415353-4ed5c971-9541-4cdf-9a00-ae90d89e963e.gif)
+
+
 ## Installation
 
 Install with composer:
@@ -16,12 +19,5 @@ composer require justoverclock/igdb-api:"*"
 
 ```sh
 composer update justoverclock/igdb-api:"*"
-php flarum migrate
 php flarum cache:clear
 ```
-
-## Links
-
-- [Packagist](https://packagist.org/packages/justoverclock/igdb-api)
-- [GitHub](https://github.com/justoverclock/igdb-api)
-- [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
