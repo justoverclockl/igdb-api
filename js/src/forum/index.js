@@ -9,7 +9,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
 
         // gestiamo gli errori nella risposta
         function handleErrors(response) {
-            if (!response.ok) {
+            if (response.ok === false) {
                 throw Error(response.statusText);
             }
             return response;
@@ -38,6 +38,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
         if (this.gameDet.description_raw === undefined) {
             return;
         } else {
+          items.remove('title')
             items.add(
                 'gameDetails',
                 <div className="myclass">
@@ -58,14 +59,18 @@ app.initializers.add('justoverclock/igdb-api', () => {
                                                 <h1 class="card-title">{this.gameDet.name}</h1>
                                                 <h4 class="gamesubtitle">
                                                     {app.translator.trans('justoverclock-igdb-api.forum.publisher')}:{' '}
-                                                    {this.gameDet.developers[0].name} -{app.translator.trans('justoverclock-igdb-api.forum.genres')}:{' '}
+                                                    {this.gameDet.developers[0].name} - {app.translator.trans('justoverclock-igdb-api.forum.genres')}:{' '}
                                                     {this.gameDet.genres[0].name}, {this.gameDet.genres[1].name}{' '}
                                                 </h4>
-                                                <p class="card-text">{this.gameDet.description_raw}</p>
+                                                <p class="card-text" id="google_translate_element">{this.gameDet.description_raw}</p>
                                                 <p class="linktometac">
                                                     <i class="fas fa-link metacr" />
-                                                    <a href={this.gameDet.metacritic_url} target="_blank" rel="nofollow">
+                                                    <a href={this.gameDet.metacritic_url} target="_blank" rel="nofollow" title={this.gameDet.metacritic_url}>
                                                         {app.translator.trans('justoverclock-igdb-api.forum.seeOnMetaCritic')}
+                                                    </a>
+                                                    <i class="fas fa-globe-europe offweb"/>
+                                                    <a href={this.gameDet.website} target="_blank" rel="nofollow" title={this.gameDet.website}>
+                                                        {app.translator.trans('justoverclock-igdb-api.forum.offwebsite')}
                                                     </a>
                                                 </p>
                                             </div>

@@ -127,7 +127,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     var isLoggedIn = flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.session.user; // gestiamo gli errori nella risposta
 
     function handleErrors(response) {
-      if (!response.ok) {
+      if (response.ok === false) {
         throw Error(response.statusText);
       }
 
@@ -156,6 +156,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     if (this.gameDet.description_raw === undefined) {
       return;
     } else {
+      items.remove('title');
       items.add('gameDetails', m("div", {
         className: "myclass"
       }, m("div", {
@@ -186,8 +187,9 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         "class": "card-title"
       }, this.gameDet.name), m("h4", {
         "class": "gamesubtitle"
-      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ":", ' ', this.gameDet.developers[0].name, " -", flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ":", ' ', this.gameDet.genres[0].name, ", ", this.gameDet.genres[1].name, ' '), m("p", {
-        "class": "card-text"
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ":", ' ', this.gameDet.developers[0].name, " - ", flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ":", ' ', this.gameDet.genres[0].name, ", ", this.gameDet.genres[1].name, ' '), m("p", {
+        "class": "card-text",
+        id: "google_translate_element"
       }, this.gameDet.description_raw), m("p", {
         "class": "linktometac"
       }, m("i", {
@@ -195,8 +197,16 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
       }), m("a", {
         href: this.gameDet.metacritic_url,
         target: "_blank",
-        rel: "nofollow"
-      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.seeOnMetaCritic'))))))))))));
+        rel: "nofollow",
+        title: this.gameDet.metacritic_url
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.seeOnMetaCritic')), m("i", {
+        "class": "fas fa-globe-europe offweb"
+      }), m("a", {
+        href: this.gameDet.website,
+        target: "_blank",
+        rel: "nofollow",
+        title: this.gameDet.website
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.offwebsite'))))))))))));
     }
   });
 });
