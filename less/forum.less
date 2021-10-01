@@ -138,6 +138,13 @@ li.item-gameDetails {
   display: block;
   margin-top: 12px;
 }
+div#gameTag {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  margin: 0 auto;
+  max-width: 540px;
+  margin-top: 5px;
+}
 .animate > span:after {
   display: none;
 }
@@ -175,4 +182,63 @@ li.item-gameDetails {
 }
 .meter.orange.nostripes {
   margin: 0 auto;
+}
+
+
+/*  ---------------------- GAMES PAGE --------------------------     */
+
+@import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+
+.imgGame {
+  width: 100%;
+  height: 135px;
+}
+
+p.games {
+  padding: 0 2.5rem 1rem;
+  margin: 0;
+}
+p.nomoreInfo {
+  margin: 8px;
+}
+h4.relDate {
+  margin: 8px;
+}
+.containerGames {
+  font-family: 'Alata';
+  color: @primary-color;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+h2.mainGameTitle {
+  text-align: center;
+  overflow: hidden;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+p.gamePlat {
+  margin: 8px;
+}
+p.Genre {
+  margin: 8px;
+}
+.cardupGames {
+  margin: 1rem;
+  max-width: 240px;
+  height: 370px;
+  background: white;
+  box-shadow: 2px 4px 25px rgba(0, 0, 0, .2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all .2s linear;
+}
+
+.cardupGames:hover {
+  box-shadow: 2px 8px 45px rgba(0, 0, 0, .25);
+  transform: translate3D(0, -2px, 0);
 }

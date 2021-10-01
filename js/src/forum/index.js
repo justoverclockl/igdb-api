@@ -1,8 +1,26 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import DiscussionHero from 'flarum/forum/components/DiscussionHero';
+import LinkButton from "flarum/components/LinkButton";
+import upcomingGames from "./components/upcomingGames";
+import IndexPage from "flarum/forum/components/IndexPage";
 
 app.initializers.add('justoverclock/igdb-api', () => {
+  app.routes.upcomingGames = {
+    path: "/games",
+    component: upcomingGames,
+  };
+  extend(IndexPage.prototype, "navItems", (navItems) => {
+    navItems.add(
+      "upcomingGames",
+      <LinkButton href={app.route("upcomingGames")} icon="fas fa-gamepad">
+        {app.translator.trans("justoverclock-igdb-api.forum.gamesPage")}
+      </LinkButton>,
+      100
+    );
+
+    return navItems;
+  });
     extend(DiscussionHero.prototype, 'oncreate', function () {
         const RawgKey = app.forum.attribute('justoverclock-igdb-api.RawgApiKey');
         const discGameTitle = this.attrs.discussion.title().split(/\s+/).join('-');
@@ -39,7 +57,6 @@ app.initializers.add('justoverclock/igdb-api', () => {
           this.gameDet.metacritic = 0;
           score = 'width:0%';
         }
-
         // non mostriamo l'html se non c'è nulla da mostrare
         if (this.gameDet.description_raw === undefined) {
             return;
@@ -84,7 +101,9 @@ app.initializers.add('justoverclock/igdb-api', () => {
                                 </div>
                             </div>
                         </div>
+                      <div class="taglist" id="gameTag">{this.gameDet.tags[0].name}, {this.gameDet.tags[1].name}, {this.gameDet.tags[2].name}, {this.gameDet.tags[3].name}</div>
                     </div>
+
             );
         }
     });
