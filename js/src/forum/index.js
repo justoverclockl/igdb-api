@@ -25,9 +25,9 @@ app.initializers.add('justoverclock/igdb-api', () => {
                     console.log(data);         // --------------------------------------------------------------------------------------------------------da rimuovere!!!
                     m.redraw();
                 })
-                .catch((error) => console.log('This Game title does not exist =>', discGameTitle));
+                .catch((error) => console.log('This Game title does not exist ;) =>', discGameTitle));
         }
-    });
+    })
     extend(DiscussionHero.prototype, 'items', function (items) {
         if (typeof this.gameDet === 'undefined') return;
 

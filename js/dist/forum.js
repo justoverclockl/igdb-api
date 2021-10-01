@@ -145,7 +145,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
 
         m.redraw();
       })["catch"](function (error) {
-        return console.log('This Game title does not exist =>', discGameTitle);
+        return console.log('This Game title does not exist ;) =>', discGameTitle);
       });
     }
   });
