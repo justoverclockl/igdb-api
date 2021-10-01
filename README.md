@@ -1,4 +1,4 @@
-# IGDB Api
+# Rawg Api integration for Flarum
 
 ![License](https://img.shields.io/badge/license-0BSD-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/justoverclock/igdb-api.svg)](https://packagist.org/packages/justoverclock/igdb-api) [![Total Downloads](https://img.shields.io/packagist/dt/justoverclock/igdb-api.svg)](https://packagist.org/packages/justoverclock/igdb-api)
 
