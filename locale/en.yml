@@ -11,3 +11,8 @@ justoverclock-igdb-api:
     relDate: Release Date
     gamesPage: New & Upcoming Games
     pagetitle: New & Upcoming Games
+    relDatePage: Release date
+    availableOn: Available on
+    genresPage: Genres
+    noConnection: Oops! The videogame database is currently unresponsive. Please check back at a later time.
+    pageTitle: New & Upcoming Games

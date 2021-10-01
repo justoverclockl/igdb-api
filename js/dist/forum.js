@@ -185,7 +185,6 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
     var div = document.getElementById('showGamesList');
 
     var convertToTwoDigits = function convertToTwoDigits(digit) {
-      // ex) "2020/8/9" => "2020/08/09"
       if (digit.toString().length < 2) {
         digit = '0' + digit.toString();
       }
@@ -213,7 +212,9 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
     };
 
     fetch(url).then(handleResponse).then(function (data) {
+      m.redraw();
       data.results.map(function (game) {
+        var LinkMe = 'https://rawg.io/games/' + game.slug;
         var card = document.createElement('div');
         card.setAttribute('class', 'cardupGames');
         var title = document.createElement('h2');
@@ -235,50 +236,40 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
           released = released.join('/');
           var releaseDate = document.createElement('h4');
           releaseDate.setAttribute('class', 'relDate');
-          releaseDate.innerText = 'Release date: ' + released;
+          releaseDate.innerText = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.relDatePage') + ':' + released;
           card.appendChild(releaseDate);
         }
+        /*if (game.platforms) {
+            const gamePlat = document.createElement('p');
+            gamePlat.setAttribute('class', 'gamePlat');
+            const platformText = document.createTextNode(app.translator.trans('justoverclock-igdb-api.forum.availableOn') + ': ');
+            gamePlat.appendChild(platformText);
+            let platformList = game.platforms.map((a) => a.platform.name).join(', ');
+            let platforms = document.createTextNode(platformList);
+            gamePlat.appendChild(platforms);
+            card.appendChild(gamePlat);
+        }*/
 
-        if (game.platforms) {
-          var gamePlat = document.createElement('p');
-          gamePlat.setAttribute('class', 'gamePlat');
-          var platformText = document.createTextNode('Available on: ');
-          gamePlat.appendChild(platformText);
-          var platformList = game.platforms.map(function (a) {
-            return a.platform.name;
-          }).join(", ");
-          var platforms = document.createTextNode(platformList);
-          gamePlat.appendChild(platforms);
-          card.appendChild(gamePlat);
-        }
-
-        var gameGenre = document.createElement('p');
+        /*const gameGenre = document.createElement('p');
         gameGenre.setAttribute('class', 'Genre');
-        var genreText = document.createTextNode('Genres: ');
+        const genreText = document.createTextNode(app.translator.trans('justoverclock-igdb-api.forum.genresPage') + ': ');
         gameGenre.appendChild(genreText);
-        var genreList = game.genres.map(function (a) {
-          return a.name;
-        }).join(", ");
-        var genres = document.createTextNode(genreList);
+        let genreList = game.genres.map((a) => a.name).join(', ');
+        let genres = document.createTextNode(genreList);
         gameGenre.appendChild(genres);
-        card.appendChild(gameGenre);
+        card.appendChild(gameGenre);*/
+
 
         if (game.clip) {
           var vid = document.createElement('video');
           vid.controls = true;
           vid.setAttribute('width', '100%');
-          vid.setAttribute('height', 'auto');
+          vid.setAttribute('height', '135px');
           vid.load();
           var vidSrc = document.createElement('source');
           vidSrc.src = game.clip.clip;
           vid.appendChild(vidSrc);
           card.appendChild(vid);
-        } else {
-          var noClip = document.createElement('p');
-          noClip.setAttribute('class', 'nomoreInfo');
-          var infoSoonText = document.createTextNode('More information coming soon.');
-          noClip.appendChild(infoSoonText);
-          card.appendChild(noClip);
         }
 
         div.appendChild(card);
@@ -288,7 +279,7 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
       var card = document.createElement('div');
       card.style.textAlign = 'center';
       card.style.margin = '0 auto';
-      card.innerHTML = 'Oops! The videogame database is currently unresponsive. Please check back at a later time.';
+      card.innerHTML = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.noConnection');
       div.appendChild(card);
     });
   };
@@ -304,7 +295,9 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
       className: "nav IndexPage-nav sideNav"
     }, m("ul", null, flarum_common_helpers_listItems__WEBPACK_IMPORTED_MODULE_4___default()(flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_3___default.a.prototype.sidebarItems().toArray()))), m("div", {
       className: "content sideNavOffset"
-    }, m("div", {
+    }, m("h1", {
+      "class": "gamePageTitle"
+    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.pageTitle')), m("div", {
       className: "containerGames",
       id: "showGamesList"
     })))));
@@ -345,14 +338,14 @@ __webpack_require__.r(__webpack_exports__);
 
 flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justoverclock/igdb-api', function () {
   flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.routes.upcomingGames = {
-    path: "/games",
+    path: '/games',
     component: _components_upcomingGames__WEBPACK_IMPORTED_MODULE_4__["default"]
   };
-  Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, "navItems", function (navItems) {
-    navItems.add("upcomingGames", m(flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_3___default.a, {
-      href: flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.route("upcomingGames"),
+  Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, 'navItems', function (navItems) {
+    navItems.add('upcomingGames', m(flarum_components_LinkButton__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      href: flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.route('upcomingGames'),
       icon: "fas fa-gamepad"
-    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans("justoverclock-igdb-api.forum.gamesPage")), 100);
+    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.gamesPage')), 100);
     return navItems;
   });
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_DiscussionHero__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'oncreate', function () {
@@ -376,8 +369,6 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         return response.json();
       }).then(function (data) {
         _this.gameDet = data;
-        console.log(data); // --------------------------------------------------------------------------------------------------------da rimuovere!!!
-
         m.redraw();
       })["catch"](function (error) {
         return console.log('This Game title does not exist ;) =>', discGameTitle);
@@ -428,7 +419,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         "class": "card-title"
       }, this.gameDet.name), m("h4", {
         "class": "gamesubtitle"
-      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ":", ' ', this.gameDet.developers[0].name, " - ", flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ":", ' ', this.gameDet.genres[0].name, ", ", this.gameDet.genres[1].name, ' '), m("p", {
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ": ", this.gameDet.developers[0].name, " -", ' ', flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ": ", this.gameDet.genres[0].name, ",", ' ', this.gameDet.genres[1].name, ' '), m("p", {
         "class": "card-text",
         id: "google_translate_element"
       }, this.gameDet.description_raw), m("p", {
