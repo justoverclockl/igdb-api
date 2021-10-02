@@ -17,7 +17,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
                 'gameAlertBox',
                 <div className="Alert gameAlert">
                     <div className="Alert-body gameAlertBody">
-                        <h4>{app.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box')}</h4>
+                        <h4>{app.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box')}<i class="fas fa-gamepad composer"/></h4>
                         <p className="desciption-alert">{app.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box-description')}</p>
                     </div>
                 </div>

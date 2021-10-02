@@ -341,7 +341,9 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         className: "Alert gameAlert"
       }, m("div", {
         className: "Alert-body gameAlertBody"
-      }, m("h4", null, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box')), m("p", {
+      }, m("h4", null, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box'), m("i", {
+        "class": "fas fa-gamepad composer"
+      })), m("p", {
         className: "desciption-alert"
       }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box-description')))));
     }
