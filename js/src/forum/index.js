@@ -47,6 +47,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
             }
             return response;
         }
+
         // per evitare troppe richieste all'api, effettuiamo fetch solo per chi è registrato
         if (isLoggedIn) {
             const GameApi = fetch('https://api.rawg.io/api/games/' + discGameTitle + '?page_size=1&page=1&key=' + RawgKey)
