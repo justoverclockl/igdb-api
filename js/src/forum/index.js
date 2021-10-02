@@ -4,6 +4,7 @@ import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 import LinkButton from 'flarum/components/LinkButton';
 import upcomingGames from './components/upcomingGames';
 import IndexPage from 'flarum/forum/components/IndexPage';
+import Link from "flarum/common/components/Link";
 
 app.initializers.add('justoverclock/igdb-api', () => {
     app.routes.upcomingGames = {
@@ -40,6 +41,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
                 .then((response) => response.json())
                 .then((data) => {
                     this.gameDet = data;
+                    console.log(data)
                     m.redraw();
                 })
                 .catch((error) => console.log('This Game title does not exist ;) =>', discGameTitle));
@@ -81,8 +83,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
                                             <h1 class="card-title">{this.gameDet.name}</h1>
                                             <h4 class="gamesubtitle">
                                                 {app.translator.trans('justoverclock-igdb-api.forum.publisher')}: {this.gameDet.developers[0].name} -{' '}
-                                                {app.translator.trans('justoverclock-igdb-api.forum.genres')}: {this.gameDet.genres[0].name},{' '}
-                                                {this.gameDet.genres[1].name}{' '}
+                                                {app.translator.trans('justoverclock-igdb-api.forum.genres')}: {this.gameDet.genres[0].name}
                                             </h4>
                                             <p class="card-text" id="google_translate_element">
                                                 {this.gameDet.description_raw}
@@ -108,9 +109,12 @@ app.initializers.add('justoverclock/igdb-api', () => {
                             </div>
                         </div>
                     </div>
-                    <div class="taglist" id="gameTag">
-                        {this.gameDet.tags[0].name}, {this.gameDet.tags[1].name}, {this.gameDet.tags[2].name}, {this.gameDet.tags[3].name}
-                    </div>
+                  <div class="userRatings">
+                    <li class="listofRatings"><i class="fas fa-circle excellent"/>Exceptional ({this.gameDet.ratings[1].count})</li>
+                    <li class="listofRatings"><i class="fas fa-circle recommended"/>Recommended ({this.gameDet.ratings[0].count})</li>
+                    <li class="listofRatings"><i class="fas fa-circle meh"/>Meh ({this.gameDet.ratings[2].count})</li>
+                    <li class="listofRatings"><i class="fas fa-circle skip"/>Skip ({this.gameDet.ratings[3].count})</li>
+                  </div>
                 </div>
             );
         }

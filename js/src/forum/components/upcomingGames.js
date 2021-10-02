@@ -46,12 +46,15 @@ export default class upcomingGames extends Page {
                     card.setAttribute('class', 'cardupGames');
                     const title = document.createElement('h2');
                     title.setAttribute('class', 'mainGameTitle');
+                    title.setAttribute('title', game.name)
                     title.textContent = game.name;
                     card.appendChild(title);
 
                     if (game.background_image) {
                         const image = document.createElement('img');
                         image.setAttribute('class', 'imgGame');
+                        image.setAttribute('alt', game.name );
+                        image.setAttribute('title', game.name );
                         image.src = game.background_image;
                         card.appendChild(image);
                     }
@@ -66,26 +69,6 @@ export default class upcomingGames extends Page {
                         releaseDate.innerText = app.translator.trans('justoverclock-igdb-api.forum.relDatePage') + ':' + released;
                         card.appendChild(releaseDate);
                     }
-
-                    /*if (game.platforms) {
-                        const gamePlat = document.createElement('p');
-                        gamePlat.setAttribute('class', 'gamePlat');
-                        const platformText = document.createTextNode(app.translator.trans('justoverclock-igdb-api.forum.availableOn') + ': ');
-                        gamePlat.appendChild(platformText);
-                        let platformList = game.platforms.map((a) => a.platform.name).join(', ');
-                        let platforms = document.createTextNode(platformList);
-                        gamePlat.appendChild(platforms);
-                        card.appendChild(gamePlat);
-                    }*/
-
-                    /*const gameGenre = document.createElement('p');
-                    gameGenre.setAttribute('class', 'Genre');
-                    const genreText = document.createTextNode(app.translator.trans('justoverclock-igdb-api.forum.genresPage') + ': ');
-                    gameGenre.appendChild(genreText);
-                    let genreList = game.genres.map((a) => a.name).join(', ');
-                    let genres = document.createTextNode(genreList);
-                    gameGenre.appendChild(genres);
-                    card.appendChild(gameGenre);*/
 
                     if (game.clip) {
                         const vid = document.createElement('video');

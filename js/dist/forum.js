@@ -219,12 +219,15 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
         card.setAttribute('class', 'cardupGames');
         var title = document.createElement('h2');
         title.setAttribute('class', 'mainGameTitle');
+        title.setAttribute('title', game.name);
         title.textContent = game.name;
         card.appendChild(title);
 
         if (game.background_image) {
           var image = document.createElement('img');
           image.setAttribute('class', 'imgGame');
+          image.setAttribute('alt', game.name);
+          image.setAttribute('title', game.name);
           image.src = game.background_image;
           card.appendChild(image);
         }
@@ -239,26 +242,6 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
           releaseDate.innerText = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.relDatePage') + ':' + released;
           card.appendChild(releaseDate);
         }
-        /*if (game.platforms) {
-            const gamePlat = document.createElement('p');
-            gamePlat.setAttribute('class', 'gamePlat');
-            const platformText = document.createTextNode(app.translator.trans('justoverclock-igdb-api.forum.availableOn') + ': ');
-            gamePlat.appendChild(platformText);
-            let platformList = game.platforms.map((a) => a.platform.name).join(', ');
-            let platforms = document.createTextNode(platformList);
-            gamePlat.appendChild(platforms);
-            card.appendChild(gamePlat);
-        }*/
-
-        /*const gameGenre = document.createElement('p');
-        gameGenre.setAttribute('class', 'Genre');
-        const genreText = document.createTextNode(app.translator.trans('justoverclock-igdb-api.forum.genresPage') + ': ');
-        gameGenre.appendChild(genreText);
-        let genreList = game.genres.map((a) => a.name).join(', ');
-        let genres = document.createTextNode(genreList);
-        gameGenre.appendChild(genres);
-        card.appendChild(gameGenre);*/
-
 
         if (game.clip) {
           var vid = document.createElement('video');
@@ -330,6 +313,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_upcomingGames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/upcomingGames */ "./src/forum/components/upcomingGames.js");
 /* harmony import */ var flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/forum/components/IndexPage */ "flarum/forum/components/IndexPage");
 /* harmony import */ var flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var flarum_common_components_Link__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/common/components/Link */ "flarum/common/components/Link");
+/* harmony import */ var flarum_common_components_Link__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Link__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -369,6 +355,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         return response.json();
       }).then(function (data) {
         _this.gameDet = data;
+        console.log(data);
         m.redraw();
       })["catch"](function (error) {
         return console.log('This Game title does not exist ;) =>', discGameTitle);
@@ -419,7 +406,7 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         "class": "card-title"
       }, this.gameDet.name), m("h4", {
         "class": "gamesubtitle"
-      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ": ", this.gameDet.developers[0].name, " -", ' ', flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ": ", this.gameDet.genres[0].name, ",", ' ', this.gameDet.genres[1].name, ' '), m("p", {
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ": ", this.gameDet.developers[0].name, " -", ' ', flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ": ", this.gameDet.genres[0].name), m("p", {
         "class": "card-text",
         id: "google_translate_element"
       }, this.gameDet.description_raw), m("p", {
@@ -439,12 +426,38 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         rel: "nofollow",
         title: this.gameDet.website
       }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.offwebsite'))))))))), m("div", {
-        "class": "taglist",
-        id: "gameTag"
-      }, this.gameDet.tags[0].name, ", ", this.gameDet.tags[1].name, ", ", this.gameDet.tags[2].name, ", ", this.gameDet.tags[3].name)));
+        "class": "userRatings"
+      }, m("li", {
+        "class": "listofRatings"
+      }, m("i", {
+        "class": "fas fa-circle excellent"
+      }), "Exceptional (", this.gameDet.ratings[1].count, ")"), m("li", {
+        "class": "listofRatings"
+      }, m("i", {
+        "class": "fas fa-circle recommended"
+      }), "Recommended (", this.gameDet.ratings[0].count, ")"), m("li", {
+        "class": "listofRatings"
+      }, m("i", {
+        "class": "fas fa-circle meh"
+      }), "Meh (", this.gameDet.ratings[2].count, ")"), m("li", {
+        "class": "listofRatings"
+      }, m("i", {
+        "class": "fas fa-circle skip"
+      }), "Skip (", this.gameDet.ratings[3].count, ")"))));
     }
   });
 });
+
+/***/ }),
+
+/***/ "flarum/common/components/Link":
+/*!***************************************************************!*\
+  !*** external "flarum.core.compat['common/components/Link']" ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['common/components/Link'];
 
 /***/ }),
 
