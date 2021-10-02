@@ -4,7 +4,6 @@ import DiscussionHero from 'flarum/forum/components/DiscussionHero';
 import LinkButton from 'flarum/components/LinkButton';
 import upcomingGames from './components/upcomingGames';
 import IndexPage from 'flarum/forum/components/IndexPage';
-import Link from "flarum/common/components/Link";
 
 app.initializers.add('justoverclock/igdb-api', () => {
     app.routes.upcomingGames = {
@@ -85,7 +84,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
                                                 {app.translator.trans('justoverclock-igdb-api.forum.publisher')}: {this.gameDet.developers[0].name} -{' '}
                                                 {app.translator.trans('justoverclock-igdb-api.forum.genres')}: {this.gameDet.genres[0].name}
                                             </h4>
-                                            <p class="card-text" id="google_translate_element">
+                                            <p class="card-text" id="google_translate_element" translate="yes">
                                                 {this.gameDet.description_raw}
                                             </p>
                                             <p class="linktometac">

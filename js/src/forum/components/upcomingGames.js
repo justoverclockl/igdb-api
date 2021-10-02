@@ -66,7 +66,7 @@ export default class upcomingGames extends Page {
                         released = released.join('/');
                         const releaseDate = document.createElement('h4');
                         releaseDate.setAttribute('class', 'relDate');
-                        releaseDate.innerText = app.translator.trans('justoverclock-igdb-api.forum.relDatePage') + ':' + released;
+                        releaseDate.innerText = app.translator.trans('justoverclock-igdb-api.forum.relDatePage') + ': ' + released;
                         card.appendChild(releaseDate);
                     }
 
@@ -96,6 +96,8 @@ export default class upcomingGames extends Page {
     }
 
     view() {
+      const date = new Date();
+      const year = date.getFullYear();
         return (
             <div className="gamesPage">
                 {IndexPage.prototype.hero()}
@@ -105,7 +107,8 @@ export default class upcomingGames extends Page {
                             <ul>{listItems(IndexPage.prototype.sidebarItems().toArray())}</ul>
                         </nav>
                         <div className="content sideNavOffset">
-                          <h1 class="gamePageTitle">{app.translator.trans('justoverclock-igdb-api.forum.pageTitle')}</h1>
+                          <h1 class="gamePageTitle">{app.translator.trans('justoverclock-igdb-api.forum.pageTitle')} - ({year})</h1>
+                          <p class="pagedescription">{app.translator.trans('justoverclock-igdb-api.forum.pageText')}</p>
                             <div className="containerGames" id="showGamesList"></div>
                         </div>
                     </div>

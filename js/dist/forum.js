@@ -239,7 +239,7 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
           released = released.join('/');
           var releaseDate = document.createElement('h4');
           releaseDate.setAttribute('class', 'relDate');
-          releaseDate.innerText = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.relDatePage') + ':' + released;
+          releaseDate.innerText = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.relDatePage') + ': ' + released;
           card.appendChild(releaseDate);
         }
 
@@ -268,6 +268,8 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
   };
 
   _proto.view = function view() {
+    var date = new Date();
+    var year = date.getFullYear();
     return m("div", {
       className: "gamesPage"
     }, flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_3___default.a.prototype.hero(), m("div", {
@@ -280,7 +282,9 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
       className: "content sideNavOffset"
     }, m("h1", {
       "class": "gamePageTitle"
-    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.pageTitle')), m("div", {
+    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.pageTitle'), " - (", year, ")"), m("p", {
+      "class": "pagedescription"
+    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('justoverclock-igdb-api.forum.pageText')), m("div", {
       className: "containerGames",
       id: "showGamesList"
     })))));
@@ -313,9 +317,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_upcomingGames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/upcomingGames */ "./src/forum/components/upcomingGames.js");
 /* harmony import */ var flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/forum/components/IndexPage */ "flarum/forum/components/IndexPage");
 /* harmony import */ var flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var flarum_common_components_Link__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/common/components/Link */ "flarum/common/components/Link");
-/* harmony import */ var flarum_common_components_Link__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Link__WEBPACK_IMPORTED_MODULE_6__);
-
 
 
 
@@ -408,7 +409,8 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         "class": "gamesubtitle"
       }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.publisher'), ": ", this.gameDet.developers[0].name, " -", ' ', flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.genres'), ": ", this.gameDet.genres[0].name), m("p", {
         "class": "card-text",
-        id: "google_translate_element"
+        id: "google_translate_element",
+        translate: "yes"
       }, this.gameDet.description_raw), m("p", {
         "class": "linktometac"
       }, m("i", {
@@ -447,17 +449,6 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     }
   });
 });
-
-/***/ }),
-
-/***/ "flarum/common/components/Link":
-/*!***************************************************************!*\
-  !*** external "flarum.core.compat['common/components/Link']" ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = flarum.core.compat['common/components/Link'];
 
 /***/ }),
 
