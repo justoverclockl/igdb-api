@@ -57,7 +57,7 @@ export default class upcomingGames extends Page {
                         image.setAttribute('alt', game.name);
                         image.setAttribute('title', game.name);
                         image.src = game.background_image;
-                        image.addEventListener('click', () => (location = LinkMe));
+                        image.addEventListener('click', () => (window.open(LinkMe)));
                         image.setAttribute('style', 'cursor: pointer;');
                         card.appendChild(image);
                     }

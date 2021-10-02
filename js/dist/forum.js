@@ -230,7 +230,7 @@ var upcomingGames = /*#__PURE__*/function (_Page) {
           image.setAttribute('title', game.name);
           image.src = game.background_image;
           image.addEventListener('click', function () {
-            return location = LinkMe;
+            return window.open(LinkMe);
           });
           image.setAttribute('style', 'cursor: pointer;');
           card.appendChild(image);
