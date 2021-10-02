@@ -2,9 +2,12 @@
 
 ![License](https://img.shields.io/badge/license-0BSD-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/justoverclock/igdb-api.svg)](https://packagist.org/packages/justoverclock/igdb-api) [![Total Downloads](https://img.shields.io/packagist/dt/justoverclock/igdb-api.svg)](https://packagist.org/packages/justoverclock/igdb-api)
 
-A [Flarum](http://flarum.org) extension. Igdb Api for Videogames
+A [Flarum](http://flarum.org) extension. Igdb Api for Videogames, Retrieve game ratings, image, description, genres and metacritic score directly from your discussion title, and display a custom page with all new and upcoming videogames.
 
-![1JK2KZZ2ot](https://user-images.githubusercontent.com/79002016/135415353-4ed5c971-9541-4cdf-9a00-ae90d89e963e.gif)
+![1111](https://user-images.githubusercontent.com/79002016/135722155-cf77febc-f69a-4e98-8fa0-fb36630cad97.png)
+
+![2](https://user-images.githubusercontent.com/79002016/135722162-4030865b-1e4d-4219-9f79-98037e0367ac.png)
+
 
 ## Usage
 
