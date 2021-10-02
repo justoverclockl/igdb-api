@@ -341,7 +341,9 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
         className: "Alert gameAlert"
       }, m("div", {
         className: "Alert-body gameAlertBody"
-      }, m("h4", null, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box')), m("p", null, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box-description')))));
+      }, m("h4", null, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box')), m("p", {
+        className: "desciption-alert"
+      }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.forum.game-title-alert-box-description')))));
     }
   });
   Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_1__["extend"])(flarum_forum_components_IndexPage__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, 'navItems', function (navItems) {
