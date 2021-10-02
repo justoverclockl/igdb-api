@@ -26,4 +26,5 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
     (new Extend\Settings)
         ->serializeToForum('justoverclock-igdb-api.RawgApiKey', 'justoverclock-igdb-api.RawgApiKey')
+        ->serializeToForum('justoverclock-igdb-api.composerAlert', 'justoverclock-igdb-api.composerAlert', 'boolval', true)
 ];

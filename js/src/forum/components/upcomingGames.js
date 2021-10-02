@@ -4,6 +4,7 @@ import IndexPage from 'flarum/forum/components/IndexPage';
 import listItems from 'flarum/common/helpers/listItems';
 
 export default class upcomingGames extends Page {
+
     oncreate(vnode) {
         super.oncreate(vnode);
         app.setTitle(app.translator.trans('justoverclock-igdb-api.forum.pagetitle'));
@@ -38,7 +39,7 @@ export default class upcomingGames extends Page {
         fetch(url)
             .then(handleResponse)
             .then(function (data) {
-              m.redraw();
+                m.redraw();
                 data.results.map((game) => {
                     const LinkMe = 'https://rawg.io/games/' + game.slug;
 
@@ -46,16 +47,18 @@ export default class upcomingGames extends Page {
                     card.setAttribute('class', 'cardupGames');
                     const title = document.createElement('h2');
                     title.setAttribute('class', 'mainGameTitle');
-                    title.setAttribute('title', game.name)
+                    title.setAttribute('title', game.name);
                     title.textContent = game.name;
                     card.appendChild(title);
 
                     if (game.background_image) {
                         const image = document.createElement('img');
                         image.setAttribute('class', 'imgGame');
-                        image.setAttribute('alt', game.name );
-                        image.setAttribute('title', game.name );
+                        image.setAttribute('alt', game.name);
+                        image.setAttribute('title', game.name);
                         image.src = game.background_image;
+                        image.addEventListener('click', () => (location = LinkMe));
+                        image.setAttribute('style', 'cursor: pointer;');
                         card.appendChild(image);
                     }
 
@@ -96,8 +99,8 @@ export default class upcomingGames extends Page {
     }
 
     view() {
-      const date = new Date();
-      const year = date.getFullYear();
+        const date = new Date();
+        const year = date.getFullYear();
         return (
             <div className="gamesPage">
                 {IndexPage.prototype.hero()}
@@ -107,9 +110,11 @@ export default class upcomingGames extends Page {
                             <ul>{listItems(IndexPage.prototype.sidebarItems().toArray())}</ul>
                         </nav>
                         <div className="content sideNavOffset">
-                          <h1 class="gamePageTitle">{app.translator.trans('justoverclock-igdb-api.forum.pageTitle')} - ({year})</h1>
-                          <p class="pagedescription">{app.translator.trans('justoverclock-igdb-api.forum.pageText')}</p>
-                            <div className="containerGames" id="showGamesList"></div>
+                            <h1 className="gamePageTitle">
+                                {app.translator.trans('justoverclock-igdb-api.forum.pageTitle')} - ({year})
+                            </h1>
+                            <p className="pagedescription">{app.translator.trans('justoverclock-igdb-api.forum.pageText')}</p>
+                            <div className="containerGames" id="showGamesList"/>
                         </div>
                     </div>
                 </div>

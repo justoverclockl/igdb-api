@@ -120,6 +120,10 @@ flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('justov
     type: 'text',
     label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.admin.rawgApi'),
     help: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.admin.rawgApi-help')
+  }).registerSetting({
+    setting: 'justoverclock-igdb-api.composerAlert',
+    label: flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default.a.translator.trans('justoverclock-igdb-api.admin.composerAlert'),
+    type: 'boolean'
   });
 });
 
