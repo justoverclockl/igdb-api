@@ -42,7 +42,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
 
         // gestiamo gli errori nella risposta
         function handleErrors(response) {
-            if (response.ok === false) {
+            if (response.ok === undefined) {
                 throw Error(response.statusText);
             }
             return response;
