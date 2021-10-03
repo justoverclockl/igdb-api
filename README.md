@@ -40,3 +40,7 @@ composer require justoverclock/igdb-api:"*"
 composer update justoverclock/igdb-api:"*"
 php flarum cache:clear
 ```
+
+## Link
+
+https://extiverse.com/extension/justoverclock/igdb-api
