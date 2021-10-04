@@ -42,7 +42,8 @@ app.initializers.add('justoverclock/igdb-api', () => {
 
         // gestiamo gli errori nella risposta
         function handleErrors(response) {
-            if (response.ok === undefined) {
+            if (!response.ok) {
+                console.clear()
                 throw Error(response.statusText);
             }
             return response;
@@ -55,6 +56,7 @@ app.initializers.add('justoverclock/igdb-api', () => {
                 .then((response) => response.json())
                 .then((data) => {
                     this.gameDet = data;
+                    console.log(data)
                     m.redraw();
                 })
                 .catch((error) => console.log('This Game title does not exist ;) =>', discGameTitle));
