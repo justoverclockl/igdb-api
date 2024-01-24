@@ -9,7 +9,7 @@
     "type": "flarum-extension",
     "license": "0BSD",
     "require": {
-        "flarum/core": "^1.0.0"
+        "flarum/core": "^1.8.5"
     },
     "require-dev": {
         "flarum/testing": "^1.0.0"
